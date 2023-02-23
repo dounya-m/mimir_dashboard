@@ -1,0 +1,17 @@
+import React from 'react' 
+import FilterBooks from '../components/books/filter/FilterBooks'
+import RecentBook from '../components/books/RecentBook'
+function Book() {
+return (
+    <div className='flex gap-[3rem]'>
+    <div className="basis-[10vw]">
+        <FilterBooks />
+    </div>
+    <div className="">
+        <RecentBook  />
+    </div>
+    </div>
+)
+}
+
+export default Book

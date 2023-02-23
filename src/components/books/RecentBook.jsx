@@ -1,21 +1,24 @@
 import React from 'react'
+import {useLocation} from 'react-router-dom' 
 import {AiOutlineArrowRight} from 'react-icons/ai'
 import H2 from '../commun/titeles/H2'
 function RecentBook() {
+    const location = useLocation();
+    const isBookPage = location.pathname === "/book";
   return (
     <div >
-        <H2 className='text-lg font-semibold capitalize Bosca mb-[1rem]'>reccently added</H2>
+        {!isBookPage && <H2 className='text-lg font-semibold capitalize Bosca mb-[1rem]'>reccently added</H2>}
         <section className='flex flex-col justify-center gap-6'>
             <SingleBooks  />
             <button className='flex items-center justify-center border-2 w-[25%] mx-auto border-black py-2 text-sm rounded-lg gap-2 hover:shadow-md'>
-                All Books <AiOutlineArrowRight />
+                All Books <AiOutlineArrowRight isBookPage={isBookPage} />
             </button>
         </section>
     </div>
   )
 }
 
-function SingleBooks() {
+function SingleBooks(isBookPage) {
     const book = [
         {
             id: "1",
@@ -78,11 +81,12 @@ function SingleBooks() {
             image: require('../../assets/images/books/Rectangle 16.png')
         },
     ]
+
     return (
-        <div className='grid gap-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2'>
+        <div className={`grid gap-5 ${isBookPage? "lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2":"lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2"}`}>
             {book.map(item => (
                 <div key={item.id}>
-                <img className='hover:shadow-lg w-[229px] h-[330px]' src={item.image} alt="" />
+                <img className='hover:shadow-lg w-[229px] h-[330px] rounded-[5px] object-cover' src={item.image} alt="" />
                 <p className='Bosca text-[#00000] text-lg w-[70%]'>{item.title}</p>
                 <p className='Bosca text-[#C9C9C9] text-xs'>{item.auhor}</p>
                 </div>

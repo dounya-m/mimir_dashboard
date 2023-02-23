@@ -4,7 +4,7 @@ import Footer from './itemes/Footer'
 function Layaout({children}) {
 return (
     <main>
-        <header>
+        <header className='mx-[8rem]'>
             <NavBar />
         </header>
         <article className='my-[4rem] mx-[8rem]'>
