@@ -35,10 +35,10 @@ return (
 function MainNav() {
     return(
         <div className='flex flex-col gap-[1rem] items-center justify-center px-5 pt-5 pb-12 font-normal Bosca text-xl '>
-            <NavLink to='/'>Home</NavLink>            
-            <NavLink to='/'>Book</NavLink>
-            <NavLink to='/'>Request a Book</NavLink>
-            <NavLink to='/'>Contatct</NavLink>
+            <NavLink className='hover:border-[#54BAB9] hover:border-b-2 border-b-2 border-transparent pb-1' to='/'>Home</NavLink>            
+            <NavLink className='hover:border-[#54BAB9] hover:border-b-2 border-b-2 border-transparent pb-1' to='/'>Book</NavLink>
+            <NavLink className='hover:border-[#54BAB9] hover:border-b-2 border-b-2 border-transparent pb-1' to='/'>Request a Book</NavLink>
+            <NavLink className='hover:border-[#54BAB9] hover:border-b-2 border-b-2 border-transparent pb-1' to='/'>Contatct</NavLink>
         </div>
     )
 }

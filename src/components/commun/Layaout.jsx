@@ -7,7 +7,9 @@ return (
         <header>
             <NavBar />
         </header>
-        <article>{children}</article>
+        <article className='my-[4rem] mx-[8rem]'>
+            {children}
+        </article>
         <footer className='bg-[#F7ECDE]'>
             <Footer />
         </footer>
