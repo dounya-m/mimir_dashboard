@@ -29,9 +29,9 @@ return (
             </button>
         </div>
         <div className={`${
-          isMenuOpen ? 'block' : 'hidden'
-        }   `}>
-        <MainNav className=' justify-self-end' />
+          isMenuOpen ? 'block ' : 'hidden'
+        }`}>
+        <MainNav className='' />
         </div>
     </div>
   )
@@ -39,7 +39,7 @@ return (
 
 function MainNav() {
     return(
-        <div className='flex flex-col gap-[1rem] items-center justify-center px-5 pt-5 pb-12 font-normal Bosca text-xl absolute   w-[80vw] bg-[#FBF8F1] z-50 '>
+        <div className='flex flex-col gap-[1rem] items-center justify-center px-5 pt-5 pb-12 font-normal Bosca text-xl absolute w-[83vw]  bg-[#FBF8F1]  z-50 '>
             <NavLink to="/" className='hover:border-[#54BAB9] hover:border-b-2 border-b-2 border-transparent pb-1' >Home</NavLink>            
             <NavLink to="/book" className='hover:border-[#54BAB9] hover:border-b-2 border-b-2 border-transparent pb-1' >Book</NavLink>
             <NavLink to="/request" className='hover:border-[#54BAB9] hover:border-b-2 border-b-2 border-transparent pb-1' >Request a Book</NavLink>

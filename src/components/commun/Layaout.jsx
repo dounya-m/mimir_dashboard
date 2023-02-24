@@ -4,10 +4,10 @@ import Footer from './itemes/Footer'
 function Layaout({children}) {
 return (
     <main>
-        <header className='mx-[8rem]'>
+        <header className='sm:mx-[4vw] lg:mx-[8vw] '>
             <NavBar />
         </header>
-        <article className='my-[4rem] mx-[8rem]'>
+        <article className='my-[4rem] sm:mx-[4vw] lg:mx-[8vw]'>
             {children}
         </article>
         <footer className='bg-[#F7ECDE]'>

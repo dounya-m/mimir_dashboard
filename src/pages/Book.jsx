@@ -1,6 +1,6 @@
 import React from 'react' 
 import FilterBooks from '../components/books/filter/FilterBooks'
-import RecentBook from '../components/books/RecentBook'
+import RecentBook from '../components/books/books/RecentBooks'
 function Book() {
 return (
     <div className='flex gap-[3rem]'>

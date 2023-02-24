@@ -1,7 +1,7 @@
     import React from 'react'
     import SearchInput from '../components/commun/itemes/SearchInput'
-    import RecentBook from '../components/books/RecentBook'
-    import BookofWeek from '../components/books/BookofWeek'
+    import RecentBook from '../components/books/books/RecentBooks'
+    import BookofWeek from '../components/books/books/BookofWeek'
     function Home() {
       return (
         <div>

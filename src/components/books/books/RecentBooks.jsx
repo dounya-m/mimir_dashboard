@@ -1,7 +1,7 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom' 
 import {AiOutlineArrowRight} from 'react-icons/ai'
-import H2 from '../commun/titeles/H2'
+import H2 from '../../commun/titeles/H2'
 function RecentBook() {
     const location = useLocation();
     const isBookPage = location.pathname === "/book";
@@ -24,61 +24,61 @@ function SingleBooks(isBookPage) {
             id: "1",
             title: "The Wicked",
             auhor: "Gilien Mckelvie",
-            image: require('../../assets/images/books/Rectangle 7.png')
+            image: require('../../../assets/images/books/Rectangle 7.png')
         },
         {
             id: "2",
             title: "Harry Pother",
             auhor: "J.K Rowling",
-            image: require('../../assets/images/books/Rectangle 8.png')
+            image: require('../../../assets/images/books/Rectangle 8.png')
         },
         {
             id: "3",
             title: "Work: a life well waster",
             auhor: "robert ashley",
-            image: require('../../assets/images/books/Rectangle 9.png')
+            image: require('../../../assets/images/books/Rectangle 9.png')
         },
         {
             id: "4",
             title: "howel's moving castle",
             auhor: "hayao miyazaki",
-            image: require('../../assets/images/books/Rectangle 10.png')
+            image: require('../../../assets/images/books/Rectangle 10.png')
         },
         {
             id: "5",
             title: "well wasted",
             auhor: "hayao miyazaki",
-            image: require('../../assets/images/books/Rectangle 11.png')
+            image: require('../../../assets/images/books/Rectangle 11.png')
         },
         {
             id: "6",
             title: "the jungle book",
             auhor: "Rudyard Kipling",
-            image: require('../../assets/images/books/Rectangle 12.png')
+            image: require('../../../assets/images/books/Rectangle 12.png')
         },
         {
             id: "7",
             title: "frozen",
             auhor: "Victoria Saxon",
-            image: require('../../assets/images/books/Rectangle 13.png')
+            image: require('../../../assets/images/books/Rectangle 13.png')
         },
         {
             id: "8",
             title: "Die Hard",
             auhor: "bruce willis",
-            image: require('../../assets/images/books/Rectangle 14.png')
+            image: require('../../../assets/images/books/Rectangle 14.png')
         },
         {
             id: "9",
             title: "The evil dead",
             auhor: "Bruce Campbell",
-            image: require('../../assets/images/books/Rectangle 15.png')
+            image: require('../../../assets/images/books/Rectangle 15.png')
         },
         {
             id: "10",
             title: "The last of us",
             auhor: "Ricky Cambier",
-            image: require('../../assets/images/books/Rectangle 16.png')
+            image: require('../../../assets/images/books/Rectangle 16.png')
         },
     ]
 

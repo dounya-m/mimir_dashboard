@@ -1,5 +1,5 @@
 import React from 'react'
-import H2 from '../commun/titeles/H2'
+import H2 from '../../commun/titeles/H2'
 
 function BookofWeek() {
 
@@ -8,7 +8,7 @@ function BookofWeek() {
         <H2>Book of the week </H2>
         <section className='flex md:flex-row gap-4 bg-[#F9F2E7] sm:flex-col'>
             <div>
-                <img className='lg:w-[50vw] sm:w-[100%]' src={require('../../assets/images/books/Rectangle 7.png')} alt="" />
+                <img className='lg:w-[50vw] sm:w-[100%]' src={require('../../../assets/images/books/Rectangle 7.png')} alt="" />
             </div>
             <div className='flex flex-col justify-center gap-4 pl-2 capitalize'>
                 <p className='text-4xl Bosca'>The Wicked</p>
