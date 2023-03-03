@@ -1,5 +1,11 @@
-import React from 'react'
-
+import React from 'react'  
+import { Link } from 'react-router-dom' 
+import {AiOutlineComment} from 'react-icons/ai'
+import {TbLayoutList} from 'react-icons/tb'
+import {BsPerson} from 'react-icons/bs'
+import {AiOutlineHeart} from 'react-icons/ai'
+import {BiShare} from 'react-icons/bi'
+import {MdOutlineKeyboardArrowDown} from 'react-icons/md'
 function Comments() {
   return (
     <div className=''>
@@ -15,18 +21,27 @@ function CommentNav(){
     return(
         <div className='className=border-t-[1px] border-b-[1px] border-black flex justify-between text-[12px]'>
             <div className='flex gap-4'>
-                <p>100 Comments</p>
-                <select className='bg-transparent' name="sort" id="">
-                    <option value="">Sort by</option>
-                </select>
+                <button className='flex gap-1'>
+                    <AiOutlineComment className='text-lg' />
+                    <p> 100 Comments</p>
+                </button>
+                <label htmlFor="" className='flex gap-1'>
+                    <TbLayoutList className='text-lg' />
+                    <select className='bg-transparent' name="sort" id="">
+                        <option value="">Sort by</option>
+                    </select>
+                </label>
             </div>
             <div>
-                <button>login</button>
+                <Link to='/login' className='flex gap-1'>
+                    <BsPerson className='text-lg' /> login
+                </Link>
             </div>
         </div>
     )
 }
 function AddComment() {
+
     return(
         <div className='flex items-start w-full gap-4 my-10'>
             <img className='w-[4rem] h-[4rem] rounded-full object-cover' src={require('../../../assets/images/profiles/hamza.jpg')} alt="" />
@@ -56,12 +71,12 @@ function AllComments() {
                 </div>
 
                 <div className='flex gap-4'>
-                    <button>18</button>
-                    <button>Reply</button>
+                    <button className='flex justify-center items-center gap-2 '> <AiOutlineHeart className='text-lg' /> 18</button>
+                    <button className='flex justify-center items-center gap-2 '><BiShare className='text-lg' /> Reply</button>
                 </div>
                 
                 <div>
-                    <button className='text-[#0047FF]'>See oter answer</button>
+                    <button className='text-[#0047FF] justify-center items-center gap-2 flex'><MdOutlineKeyboardArrowDown className='text-base text-black' />See oter answer</button>
                 </div>
             </div>
         </div>
