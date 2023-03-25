@@ -1,9 +1,15 @@
 import React from 'react'
+import SideBar from './itemes/SideBar'
 
-function Layaout() {
+function Layaout({children}) {
   return (
-    <div>
-      <h1>nav</h1>
+    <div className='flex'>
+      <nav className='pt-10 pl-6 h-[100vw] bg-[#E5E5E5] '>
+        <SideBar />
+      </nav>
+      <main className='pt-10 pl-6'>
+        {children}
+      </main>
     </div>
   )
 }
