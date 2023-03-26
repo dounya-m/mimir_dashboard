@@ -1,47 +1,47 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import Logo from '../Logo';
 import NavItems from '../itemes/NavItems';
 import { IoMdLogOut } from 'react-icons/io';
 import { AiOutlineSetting } from 'react-icons/ai';
 
 function SideBar() {
+  const isActive = (match, location) => {
+    return match && location.pathname === match.url;
+  };
 
-
-
-return (
-    <div className='flex flex-col justify-between h-[80vh] '>
-    
-    <section className=''>
-
+  return (
+    <div className='flex flex-col justify-between h-[80vh]'>
+      <section className=''>
         <Logo className='' />
-    </section>
+      </section>
 
-    <ul className='flex flex-col gap-10'>
+      <ul className='flex flex-col gap-10'>
         {NavItems.map((item) => (
-        <li className='text-[14px]' key={item.name}>
+          <li className='text-[14px]' key={item.name}>
             <NavLink
-            exact
-            to={item.path}
-            className='linkStyle'
-            activeClassName='activeStyle'  
+              exact
+              to={item.path}
+              className={() => isActive ? 'linkStyle' : 'linkStyle'}
+              activeClassName='active'
+              isActive={isActive}
             >
-            {item.icon} {item.name}
+              {item.icon} {item.name}
             </NavLink>
-        </li>
+          </li>
         ))}
-    </ul>
+      </ul>
 
-    <section className='flex flex-col gap-4'>
+      <section className='flex flex-col gap-4'>
         <a className='linkStyle' href='/'>
-        <IoMdLogOut /> Logout
+          <IoMdLogOut /> Logout
         </a>
         <a className='linkStyle' href='/'>
-        <AiOutlineSetting /> Settings
+          <AiOutlineSetting /> Settings
         </a>
-    </section>
+      </section>
     </div>
-);
+  );
 }
 
 export default SideBar;

@@ -1,177 +1,143 @@
-import React, {useState} from 'react'
-import H2 from '../titels/H2'
-import SubTitle from '../titels/SubTitle'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import H2 from '../titels/H2';
+import SubTitle from '../titels/SubTitle';
+import {BsSearch} from 'react-icons/bs'
+import {AiOutlineUsergroupAdd} from 'react-icons/ai'
+import AddStudentPopup from './AddStudentPopup'
 
 function StudentTable() {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(5);
+const [users, setUsers] = useState([]);
+const [currentPage, setCurrentPage] = useState(1);
+const [usersPerPage, setUsersPerPage] = useState(7);
+const [searchQuery, setSearchQuery] = useState('');
 
-  const data = [
-    {
-      id: 1,
-      name: 'John Doe',
-      age: 30,
-      email: 'johndoe@example.com'
-    },
-    {
-      id: 2,
-      name: 'Jane Smith',
-      age: 25,
-      email: 'janesmith@example.com'
-    },
-    {
-      id: 3,
-      name: 'Bob Johnson',
-      age: 40,
-      email: 'bobjohnson@example.com'
-    },
-    {
-      id: 4,
-      name: 'Alice Lee',
-      age: 28,
-      email: 'alicelee@example.com'
-    },
-    {
-      id: 5,
-      name: 'Tom Wilson',
-      age: 35,
-      email: 'tomwilson@example.com'
-    },
-    {
-      id: 6,
-      name: 'Sara Miller',
-      age: 29,
-      email: 'saramiller@example.com'
-    },
-    {
-      id: 7,
-      name: 'Mike Davis',
-      age: 42,
-      email: 'mikedavis@example.com'
-    },
-    {
-      id: 8,
-      name: 'Amy Brown',
-      age: 27,
-      email: 'amybrown@example.com'
-    },
-    {
-      id: 9,
-      name: 'Peter Lee',
-      age: 38,
-      email: 'peterlee@example.com'
-    },
-    {
-      id: 10,
-      name: 'Linda Johnson',
-      age: 32,
-      email: 'lindajohnson@example.com'
-    },
-    {
-        id: 10,
-        name: 'Linda Johnson',
-        age: 32,
-        email: 'lindajohnson@example.com'
-      },
-      {
-        id: 10,
-        name: 'Linda Johnson',
-        age: 32,
-        email: 'lindajohnson@example.com'
-      },
-      {
-        id: 10,
-        name: 'Linda Johnson',
-        age: 32,
-        email: 'lindajohnson@example.com'
-      },
-      {
-        id: 10,
-        name: 'Linda Johnson',
-        age: 32,
-        email: 'lindajohnson@example.com'
-      },
-      {
-        id: 10,
-        name: 'Linda Johnson',
-        age: 32,
-        email: 'lindajohnson@example.com'
-      },
-  ];
+useEffect(() => {
+axios.get('http://localhost:5000/api/mimir/user')
+    .then(res => {
+    setUsers(res.data);
+    console.log(res.data);
+    })
+    .catch(err => {
+    console.log(err);
+    });
+}, []);
 
-  // Logic for displaying current items
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+// Logic for displaying current users
+const filteredUsers = users.filter(user => user.username.toLowerCase().includes(searchQuery.toLowerCase()));
+const indexOfLastUser = currentPage * usersPerPage;
+const indexOfFirstUser = indexOfLastUser - usersPerPage;
+const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
-  // Logic for displaying page numbers
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(data.length / itemsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+// Logic for displaying page numbers
+const pageNumbers = [];
+for (let i = 1; i <= Math.ceil(filteredUsers.length / usersPerPage); i++) {
+pageNumbers.push(i);
+}
 
-  const renderPageNumbers = pageNumbers.map((number) => {
-    return (
-      <li key={number} className="px-3 py-1 bg-white border border-gray-300 cursor-pointer">
-        <button onClick={() => setCurrentPage(number)}>{number}</button>
-      </li>
-    );
-  });
-    return (
-        <div>
-        <section>
-        <H2> All students </H2>
-        <SubTitle>Monitor artist sales, reviews, etc.</SubTitle>
-        </section>
-        
-        <div className="flex flex-col items-center justify-center">
-      <table className="min-w-full overflow-hidden divide-y divide-gray-200 rounded-lg shadow">
+const renderPageNumbers = pageNumbers.map(number => {
+return (
+    <li key={number} className="px-3 py-1">
+    <button
+        onClick={() => setCurrentPage(number)}
+        className={`${
+        currentPage === number
+            ? 'bg-teal-500 w-8 h-8 text-white'
+            : 'bg-white text-gray-700'
+        } hover:bg-gray-100 hover:text-gray-900 w-8 h-8 rounded-lg focus:outline-none`}
+    >
+        {number}
+    </button>
+    </li>
+);
+});
+
+const [students, setStudents] = useState([]);
+const [showPopup, setShowPopup] = useState(false);
+
+const addStudent = (student) => {
+  setStudents([...students, student]);
+};
+
+const togglePopup = () => {
+  setShowPopup(!showPopup);
+};
+
+return (
+<div>
+    <section className='relative flex items-start justify-between my-4'>
+    <div className='flex flex-col gap-1'>
+    <H2> All students </H2>
+    <SubTitle>Monitor artist sales, reviews, etc.</SubTitle>
+    </div>
+    <div className="flex w-[40%] gap-4 p-2 mb-4 bg-gray-100 rounded-[5px]">
+        <BsSearch className="inline-block text-gray-400" />
+        <input className='focus:outline-none text-[12px] bg-transparent' 
+        type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search students..." />
+    </div>
+    <div className=''>
+        <AiOutlineUsergroupAdd  className='p-1 text-gray-700 bg-[#54BAB9] hover:text-gray-900 rounded-[5px] text-[28px] cursor-pointer'
+        onClick={togglePopup} />
+        <div className='absolute right-0 w-full '>
+                {showPopup && (
+                <AddStudentPopup
+                    className=''
+                    addStudent={addStudent}
+                    closePopup={togglePopup}
+                    />
+                )}
+        </div>
+    </div>
+    </section>
+
+    <div className="flex flex-col items-center justify-center">
+    <table className="min-w-full overflow-hidden divide-y divide-gray-200 rounded-lg shadow w-[50vw]">
         <thead className="bg-gray-50">
-          <tr>
-            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-              Name
+        <tr>
+            <th
+            scope="col"
+            className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+            Name
             </th>
-            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-              Age
+            <th
+            scope="col"
+            className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+                Age
             </th>
-            <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-              Email
+            <th
+                scope="col"
+                className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+                Email
             </th>
-          </tr>
+            </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {currentItems.map((item) => (
-            <tr key={item.id}>
-              <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-sm font-medium text-gray-900">{item.name}</div>
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-sm text-gray-900">{item.age}</div>
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-sm text-gray-900">{item.email}</div>
-        </td>
-      </tr>
-      ))}
-    </tbody>
-  </table>
-  <ul className="flex justify-center mt-4">
-    {renderPageNumbers}
-  </ul>
-  <div className="flex justify-center mt-4">
-    {/* <select
-      className="px-3 py-1 border border-gray-300"
-      value={itemsPerPage}
-      onChange={(e) => setItemsPerPage(Number(e.target.value))}
-    >
-      <option value={5}>5</option>
-      <option value={10}>10</option>
-      <option value={20}>20</option>
-    </select> */}
-  </div>
-</div>
+            {currentUsers.map(user => (
+            <tr key={user.id}>
+                <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm font-medium text-gray-900">{user.username}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-gray-900">{user.image}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-gray-900">{user.email}</div>
+                </td>
+            </tr>
+            ))}
+        </tbody>
+        </table>
+    
+        <ul className="flex justify-center mt-4">
+        {renderPageNumbers}
+        </ul>
+    </div>
+    </div>
+    
 
-        </div>
     )
 }
 
