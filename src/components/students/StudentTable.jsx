@@ -24,7 +24,7 @@ axios.get('http://localhost:5000/api/mimir/user')
 }, []);
 
 // Logic for displaying current users
-const filteredUsers = users.filter(user => user.username.toLowerCase().includes(searchQuery.toLowerCase()));
+const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchQuery.toLowerCase()));
 const indexOfLastUser = currentPage * usersPerPage;
 const indexOfFirstUser = indexOfLastUser - usersPerPage;
 const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
@@ -64,7 +64,7 @@ const togglePopup = () => {
 };
 
 return (
-<div>
+<>
     <section className='relative flex items-start justify-between my-4'>
     <div className='flex flex-col gap-1'>
     <H2> All students </H2>
@@ -118,7 +118,7 @@ return (
             {currentUsers.map(user => (
             <tr key={user.id}>
                 <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm font-medium text-gray-900">{user.username}</div>
+                <div className="text-sm font-medium text-gray-900">{user.name}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{user.image}</div>
@@ -135,7 +135,7 @@ return (
         {renderPageNumbers}
         </ul>
     </div>
-    </div>
+    </>
     
 
     )

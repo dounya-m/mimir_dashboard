@@ -7,9 +7,9 @@ function Layaout({children}) {
       <nav className='pt-10 pl-6 h-[100vw] bg-[#E5E5E5] '>
         <SideBar />
       </nav>
-      <main className='pt-10 pl-6'>
+      <article className='pt-10 pl-6'>
         {children}
-      </main>
+      </article>
     </div>
   )
 }

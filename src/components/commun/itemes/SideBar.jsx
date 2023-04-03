@@ -20,7 +20,6 @@ function SideBar() {
         {NavItems.map((item) => (
           <li className='text-[14px]' key={item.name}>
             <NavLink
-              exact
               to={item.path}
               className={() => isActive ? 'linkStyle' : 'linkStyle'}
               activeClassName='active'
